@@ -1,0 +1,8 @@
+name: BungeeWhitelist
+version: '${project.version}'
+main: rocks.learnercouncil.bungeewhitelist.BungeeWhitelist
+description: A whitelist to make us that much more safe
+author: h2ofiremaster
+commands:
+  bungeewl:
+    permission: "bungeewl.command"
