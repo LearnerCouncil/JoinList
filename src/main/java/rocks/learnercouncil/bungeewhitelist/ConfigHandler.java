@@ -6,14 +6,13 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
 import java.io.*;
-import java.nio.file.Files;
 
 public class ConfigHandler {
 
-    private static BungeeWhitelist plugin = BungeeWhitelist.getPlugin();
+    private static final BungeeWhitelist plugin = BungeeWhitelist.getPlugin();
     public static Configuration config = loadConfig();
 
-    private static File loadResource(BungeeWhitelist plugin, String resource) {
+    private static File loadResource(String resource) {
         File folder = plugin.getDataFolder();
         if (!folder.exists())
             folder.mkdir();
@@ -34,8 +33,7 @@ public class ConfigHandler {
 
     public static Configuration loadConfig() {
         try {
-            Configuration config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(loadResource(plugin, "config.yml"));
-            return config;
+            return ConfigurationProvider.getProvider(YamlConfiguration.class).load(loadResource("config.yml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

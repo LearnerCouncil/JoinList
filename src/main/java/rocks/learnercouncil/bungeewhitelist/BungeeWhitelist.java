@@ -1,28 +1,35 @@
 package rocks.learnercouncil.bungeewhitelist;
 
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
-import net.md_5.bungee.config.Configuration;
-import net.md_5.bungee.config.ConfigurationProvider;
-import net.md_5.bungee.config.YamlConfiguration;
-import rocks.learnercouncil.bungeewhitelist.events.PreLogin;
+import rocks.learnercouncil.bungeewhitelist.events.Login;
 
-import java.io.File;
+import java.util.List;
 
 public final class BungeeWhitelist extends Plugin {
 
     public static BungeeWhitelist plugin;
-    public Configuration config = ConfigHandler.loadConfig();
+
+    public static boolean enabled;
+    public static List<String> players;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         plugin = this;
-        getProxy().getPluginManager().registerListener(this, new PreLogin(this));
+        //
+        enabled = ConfigHandler.config.getBoolean("enabled");
+        players = ConfigHandler.config.getStringList("players");
+        getProxy().getPluginManager().registerListener(this, new Login());
+        ProxyServer.getInstance().getPluginManager().registerCommand(this, new BungeewlCommand());
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        ConfigHandler.config.set("players", players);
+        ConfigHandler.config.set("enabled", enabled);
+        ConfigHandler.saveConfig();
     }
 
     public static BungeeWhitelist getPlugin() {
