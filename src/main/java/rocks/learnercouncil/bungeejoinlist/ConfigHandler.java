@@ -1,4 +1,4 @@
-package rocks.learnercouncil.bungeewhitelist;
+package rocks.learnercouncil.bungeejoinlist;
 
 import com.google.common.io.ByteStreams;
 import net.md_5.bungee.config.Configuration;
@@ -9,18 +9,18 @@ import java.io.*;
 
 public class ConfigHandler {
 
-    private static final BungeeWhitelist plugin = BungeeWhitelist.getPlugin();
+    private static final BungeeJoinlist plugin = BungeeJoinlist.getPlugin();
     public static Configuration config = loadConfig();
 
-    private static File loadResource(String resource) {
+    private static File loadResource() {
         File folder = plugin.getDataFolder();
         if (!folder.exists())
             folder.mkdir();
-        File resourceFile = new File(folder, resource);
+        File resourceFile = new File(folder, "config.yml");
         try {
             if (!resourceFile.exists()) {
                 resourceFile.createNewFile();
-                try (InputStream in = plugin.getResourceAsStream(resource);
+                try (InputStream in = plugin.getResourceAsStream("config.yml");
                      OutputStream out = new FileOutputStream(resourceFile)) {
                     ByteStreams.copy(in, out);
                 }
@@ -33,7 +33,7 @@ public class ConfigHandler {
 
     public static Configuration loadConfig() {
         try {
-            return ConfigurationProvider.getProvider(YamlConfiguration.class).load(loadResource("config.yml"));
+            return ConfigurationProvider.getProvider(YamlConfiguration.class).load(loadResource());
         } catch (IOException e) {
             e.printStackTrace();
         }
