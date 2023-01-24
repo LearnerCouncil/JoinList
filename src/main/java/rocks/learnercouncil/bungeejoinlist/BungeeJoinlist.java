@@ -1,18 +1,21 @@
 package rocks.learnercouncil.bungeejoinlist;
 
+import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
+import rocks.learnercouncil.bungeejoinlist.data.NameChange;
+import rocks.learnercouncil.bungeejoinlist.data.PlayerData;
 import rocks.learnercouncil.bungeejoinlist.events.Login;
+import rocks.learnercouncil.bungeejoinlist.events.PostLogin;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public final class BungeeJoinlist extends Plugin {
 
-    private static BungeeJoinlist plugin;
+    @Getter private static BungeeJoinlist plugin;
 
     public static boolean enabled;
-    public static List<PlayerData> players;
 
     @Override
     public void onEnable() {
@@ -20,23 +23,21 @@ public final class BungeeJoinlist extends Plugin {
         plugin = this;
         //
         enabled = ConfigHandler.config.getBoolean("enabled");
-        players = ConfigHandler.config.getStringList("players").stream().map(PlayerData::deserialize).collect(Collectors.toList());
+        ConfigHandler.config.getStringList("players").forEach(PlayerData::deserialize);
+        NameChange.deserialize();
         getLogger().info("Loaded Joinlist.");
         getProxy().getPluginManager().registerListener(this, new Login());
+        getProxy().getPluginManager().registerListener(this, new PostLogin());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new BungeejlCommand());
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        List<String> playerList = players.stream().map(PlayerData::serialize).collect(Collectors.toList());
-        getLogger().info("Players: " + playerList);
+        List<String> playerList = PlayerData.players.stream().map(PlayerData::serialize).collect(Collectors.toList());
         ConfigHandler.config.set("players", playerList);
         ConfigHandler.config.set("enabled", enabled);
+        NameChange.serialize();
         ConfigHandler.saveConfig();
-    }
-
-    public static BungeeJoinlist getPlugin() {
-        return plugin;
     }
 }

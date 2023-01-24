@@ -6,3 +6,4 @@ author: h2ofiremaster
 commands:
   bungeejl:
     permission: "bungeejl.command"
+    aliases: [ joinlist ]
