@@ -22,7 +22,7 @@ public class OnArg implements CommandArgument {
 
     @Override
     public List<String> tabComplete(CommandSender sender, String[] args) {
-        if(args.length == 1) return Collections.singletonList("add");
+        if(args.length == 1) return Collections.singletonList("on");
         return Collections.emptyList();
     }
 }

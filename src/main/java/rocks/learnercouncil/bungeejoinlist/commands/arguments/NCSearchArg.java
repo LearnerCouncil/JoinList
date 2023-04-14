@@ -29,7 +29,7 @@ public class NCSearchArg implements CommandArgument {
     @Override
     public List<String> tabComplete(CommandSender sender, String[] args) {
         if(!sender.hasPermission("bungeejl.viewnamechanges")) return Collections.emptyList();
-        if(args.length == 1) return Collections.singletonList("nclist");
+        if(args.length == 1) return Collections.singletonList("ncsearch");
         return Collections.emptyList();
     }
 }
