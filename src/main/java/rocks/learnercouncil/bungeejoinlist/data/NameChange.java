@@ -3,10 +3,7 @@ package rocks.learnercouncil.bungeejoinlist.data;
 import net.md_5.bungee.config.Configuration;
 import rocks.learnercouncil.bungeejoinlist.ConfigHandler;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class NameChange {
@@ -29,16 +26,8 @@ public class NameChange {
 
     private static final ArrayList<NameChange> nameChanges = new ArrayList<>();
 
-    public static List<NameChange> getUnseenNameChanges(UUID uuid) {
-        List<NameChange> c = new ArrayList<>();
-        for (NameChange change : nameChanges) {
-            if (!change.shownPlayers.contains(uuid)) c.add(change);
-        }
-        return c;
-    }
-
-    public static List<NameChange> getNameChanges() {
-        return nameChanges;
+    public static List<NameChange> getNameChanges(UUID uuid, boolean seen) {
+        return nameChanges.stream().filter(c -> c.shownPlayers.contains(uuid) == seen).collect(Collectors.toList());
     }
 
     public static void serialize() {

@@ -4,6 +4,6 @@ main: rocks.learnercouncil.bungeejoinlist.BungeeJoinlist
 description: A plugin to filter who can join the server
 author: h2ofiremaster
 commands:
-  bungeejl:
+  joinlist:
     permission: "bungeejl.command"
-    aliases: [ joinlist ]
+    aliases: [ bungeejl ]
