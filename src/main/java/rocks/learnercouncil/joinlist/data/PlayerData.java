@@ -1,4 +1,4 @@
-package rocks.learnercouncil.bungeejoinlist.data;
+package rocks.learnercouncil.joinlist.data;
 
 import lombok.Getter;
 

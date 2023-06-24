@@ -1,4 +1,4 @@
-package rocks.learnercouncil.bungeejoinlist;
+package rocks.learnercouncil.joinlist;
 
 import com.google.common.io.ByteStreams;
 import net.md_5.bungee.api.ChatColor;
@@ -11,7 +11,7 @@ import java.io.*;
 
 public class ConfigHandler {
 
-    private static final BungeeJoinlist plugin = BungeeJoinlist.getPlugin();
+    private static final Joinlist plugin = Joinlist.getPlugin();
     @NotNull public static final Configuration config = loadConfig();
 
     @SuppressWarnings("ResultOfMethodCallIgnored")

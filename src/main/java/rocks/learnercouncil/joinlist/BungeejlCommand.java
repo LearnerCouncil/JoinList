@@ -1,21 +1,4 @@
-package rocks.learnercouncil.bungeejoinlist;
-
-import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.hover.content.Text;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.plugin.Command;
-import net.md_5.bungee.api.plugin.TabExecutor;
-import rocks.learnercouncil.bungeejoinlist.data.NameChange;
-import rocks.learnercouncil.bungeejoinlist.data.PlayerData;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static net.md_5.bungee.api.ChatColor.*;
+package rocks.learnercouncil.joinlist;
 
 public class BungeejlCommand/* extends Command implements TabExecutor*/ {
     /*
@@ -30,23 +13,23 @@ public class BungeejlCommand/* extends Command implements TabExecutor*/ {
         if(sender.hasPermission("bungeejl.command")) {
             if(args.length >= 2)
                 name = args[1];
-            String prefix = DARK_AQUA + "[BungeeJoinlist] " + AQUA;
+            String prefix = DARK_AQUA + "[Joinlist] " + AQUA;
             if(args.length < 1) return;
             switch(args[0].toLowerCase()) {
                 case "on":
-                    if (BungeeJoinlist.enabled) {
+                    if (Joinlist.enabled) {
                         sender.sendMessage(new ComponentBuilder(prefix + RED + "Joinlist already enabled").create());
                         return;
                     }
-                    BungeeJoinlist.enabled = true;
+                    Joinlist.enabled = true;
                     sender.sendMessage(new ComponentBuilder(prefix + "Joinlist enabled.").create());
                     return;
                 case "off":
-                    if (!BungeeJoinlist.enabled) {
+                    if (!Joinlist.enabled) {
                         sender.sendMessage(new ComponentBuilder(prefix + RED + "Joinlist already disabled").create());
                         return;
                     }
-                    BungeeJoinlist.enabled = false;
+                    Joinlist.enabled = false;
                     sender.sendMessage(new ComponentBuilder(prefix + "Joinlist disabled.").create());
                     return;
                 case "add":
@@ -83,7 +66,7 @@ public class BungeejlCommand/* extends Command implements TabExecutor*/ {
                     return !NameChange.getUnseenNameChanges(((ProxiedPlayer) sender).getUniqueId()).contains(c);
                 return false;
             }).collect(Collectors.toList()));
-            ComponentBuilder changeList = new ComponentBuilder(DARK_AQUA + "[BungeeJoinlist] Name Changes: \n");
+            ComponentBuilder changeList = new ComponentBuilder(DARK_AQUA + "[Joinlist] Name Changes: \n");
             if(args.length == 1 && args[0].equalsIgnoreCase("ncview")) {
                 for (NameChange change : changes) {
                     changeList.append(change.toString() + "\n").color(AQUA).bold(sender instanceof ProxiedPlayer && !change.shownPlayers.contains(((ProxiedPlayer) sender).getUniqueId()));

@@ -1,10 +1,10 @@
-package rocks.learnercouncil.bungeejoinlist.commands;
+package rocks.learnercouncil.joinlist.commands;
 
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;
-import rocks.learnercouncil.bungeejoinlist.commands.arguments.*;
+import rocks.learnercouncil.joinlist.commands.arguments.*;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,19 +1,19 @@
-package rocks.learnercouncil.bungeejoinlist.events;
+package rocks.learnercouncil.joinlist.events;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
-import rocks.learnercouncil.bungeejoinlist.BungeeJoinlist;
-import rocks.learnercouncil.bungeejoinlist.data.PlayerData;
+import rocks.learnercouncil.joinlist.Joinlist;
+import rocks.learnercouncil.joinlist.data.PlayerData;
 
 public class Login implements Listener {
 
 
     @EventHandler
     public void onPlayerLogin(LoginEvent e) {
-        if(!BungeeJoinlist.enabled) return;
+        if(!Joinlist.enabled) return;
         if(PlayerData.contains(e.getConnection().getUniqueId())) return;
         e.getConnection().disconnect(new ComponentBuilder(
                 "You are not on the joinlist.\n Please type")

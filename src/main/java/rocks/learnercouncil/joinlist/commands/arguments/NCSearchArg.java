@@ -1,11 +1,11 @@
-package rocks.learnercouncil.bungeejoinlist.commands.arguments;
+package rocks.learnercouncil.joinlist.commands.arguments;
 
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import rocks.learnercouncil.bungeejoinlist.commands.CommandArgument;
-import rocks.learnercouncil.bungeejoinlist.commands.CommandResult;
-import rocks.learnercouncil.bungeejoinlist.data.NameChange;
+import rocks.learnercouncil.joinlist.commands.CommandArgument;
+import rocks.learnercouncil.joinlist.commands.CommandResult;
+import rocks.learnercouncil.joinlist.data.NameChange;
 
 import java.util.Arrays;
 import java.util.Collections;
