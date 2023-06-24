@@ -26,8 +26,8 @@ import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import rocks.learnercouncil.joinlist.Joinlist;
+import rocks.learnercouncil.joinlist.data.JavaPlayer;
 import rocks.learnercouncil.joinlist.data.NameChange;
-import rocks.learnercouncil.joinlist.data.PlayerData;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -38,6 +38,7 @@ public class PostLogin implements Listener {
     public void onPostLogin(PostLoginEvent e) {
         if(!Joinlist.enabled) return;
         ProxiedPlayer player = e.getPlayer();
+        if(e.getPlayer().getName().startsWith("+")) return;
         UUID uuid = e.getPlayer().getUniqueId();
         handleNameChange(player, uuid);
         if(!player.hasPermission("bungeejl.viewnamechanges")) return;
@@ -48,17 +49,17 @@ public class PostLogin implements Listener {
     }
 
     private void handleNameChange(ProxiedPlayer player, UUID uuid) {
-        if(!PlayerData.contains(uuid)) return;
-        PlayerData playerData = PlayerData.get(uuid).orElseThrow(() -> new NullPointerException("PlayerData contains UUID, yet get() returned null."));
-        if(playerData.getName().equals(player.getName())) return;
+        if(!JavaPlayer.contains(uuid)) return;
+        JavaPlayer javaPlayer = JavaPlayer.get(uuid).orElseThrow(() -> new NullPointerException("JavaPlayer contains UUID, yet get() returned null."));
+        if(javaPlayer.getName().equals(player.getName())) return;
         HashSet<UUID> shownPlayers = new HashSet<>();
         Joinlist.getPlugin().getProxy().getPlayers().forEach(p -> {
             if(p.hasPermission("bungeejl.viewnamechanges")) {
-                p.sendMessage(new ComponentBuilder(ChatColor.DARK_AQUA + "[JoinList] " + ChatColor.AQUA + "Player " + ChatColor.YELLOW + playerData.getName() + ChatColor.AQUA + " has joined with a new username: " + ChatColor.YELLOW + player.getName()).create());
+                p.sendMessage(new ComponentBuilder(ChatColor.DARK_AQUA + "[JoinList] " + ChatColor.AQUA + "Player " + ChatColor.YELLOW + javaPlayer.getName() + ChatColor.AQUA + " has joined with a new username: " + ChatColor.YELLOW + player.getName()).create());
                 shownPlayers.add(p.getUniqueId());
             }
         });
-        new NameChange(getDate(), playerData.getName(), player.getName(), shownPlayers);
+        new NameChange(getDate(), javaPlayer.getName(), player.getName(), shownPlayers);
     }
 
     private String getDate() {

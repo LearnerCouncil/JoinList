@@ -22,6 +22,7 @@ import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import rocks.learnercouncil.joinlist.commands.JoinlistCmd;
+import rocks.learnercouncil.joinlist.data.JavaPlayer;
 import rocks.learnercouncil.joinlist.data.NameChange;
 import rocks.learnercouncil.joinlist.data.PlayerData;
 import rocks.learnercouncil.joinlist.events.Login;
@@ -42,7 +43,7 @@ public final class Joinlist extends Plugin {
         plugin = this;
         //
         enabled = ConfigHandler.config.getBoolean("enabled");
-        ConfigHandler.config.getStringList("players").forEach(PlayerData::deserialize);
+        ConfigHandler.config.getStringList("JAVA_PLAYERS").forEach(PlayerData::deserialize);
         NameChange.deserialize();
         getLogger().info("Loaded Joinlist.");
         getProxy().getPluginManager().registerListener(this, new Login());
@@ -54,7 +55,7 @@ public final class Joinlist extends Plugin {
     public void onDisable() {
         // Plugin shutdown logic
         List<String> playerList = PlayerData.players.stream().map(PlayerData::serialize).collect(Collectors.toList());
-        ConfigHandler.config.set("players", playerList);
+        ConfigHandler.config.set("JAVA_PLAYERS", playerList);
         ConfigHandler.config.set("enabled", enabled);
         NameChange.serialize();
         ConfigHandler.saveConfig();

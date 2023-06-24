@@ -22,6 +22,7 @@ import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.BaseComponent;
 import rocks.learnercouncil.joinlist.commands.CommandArgument;
 import rocks.learnercouncil.joinlist.commands.CommandResult;
+import rocks.learnercouncil.joinlist.data.JavaPlayer;
 import rocks.learnercouncil.joinlist.data.PlayerData;
 
 import java.util.Collections;

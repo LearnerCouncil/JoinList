@@ -22,6 +22,8 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.hover.content.Text;
+import rocks.learnercouncil.joinlist.data.BedrockPlayer;
+import rocks.learnercouncil.joinlist.data.JavaPlayer;
 import rocks.learnercouncil.joinlist.data.NameChange;
 import rocks.learnercouncil.joinlist.data.PlayerData;
 
@@ -83,7 +85,10 @@ public class CommandResult {
         ComponentBuilder b = prefix().append("Players: \n").color(DARK_AQUA);
         for (Iterator<PlayerData> iterator = PlayerData.players.iterator(); iterator.hasNext(); ) {
             PlayerData data = iterator.next();
-            b.append(data.getName()).event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(data.getId().toString())));
+            b.append(data.getName());
+            if (data instanceof JavaPlayer) {
+                b.event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(((JavaPlayer) data).getId().toString())));
+            }
             if(iterator.hasNext())
                 b.append(", ");
         }
