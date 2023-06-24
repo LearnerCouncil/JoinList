@@ -1,8 +1,9 @@
-name: BungeeWhitelist
+name: BungeeJoinlist
 version: '${project.version}'
-main: rocks.learnercouncil.bungeewhitelist.BungeeWhitelist
-description: A whitelist to make us that much more safe
+main: rocks.learnercouncil.bungeejoinlist.BungeeJoinlist
+description: A plugin to filter who can join the server
 author: h2ofiremaster
 commands:
-  bungeewl:
-    permission: "bungeewl.command"
+  bungeejl:
+    permission: "bungeejl.command"
+    aliases: [ joinlist ]
