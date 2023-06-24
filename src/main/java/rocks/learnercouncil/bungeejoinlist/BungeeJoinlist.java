@@ -3,6 +3,7 @@ package rocks.learnercouncil.bungeejoinlist;
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
+import rocks.learnercouncil.bungeejoinlist.commands.JoinlistCmd;
 import rocks.learnercouncil.bungeejoinlist.data.NameChange;
 import rocks.learnercouncil.bungeejoinlist.data.PlayerData;
 import rocks.learnercouncil.bungeejoinlist.events.Login;
@@ -28,7 +29,7 @@ public final class BungeeJoinlist extends Plugin {
         getLogger().info("Loaded Joinlist.");
         getProxy().getPluginManager().registerListener(this, new Login());
         getProxy().getPluginManager().registerListener(this, new PostLogin());
-        ProxyServer.getInstance().getPluginManager().registerCommand(this, new BungeejlCommand());
+        ProxyServer.getInstance().getPluginManager().registerCommand(this, new JoinlistCmd());
     }
 
     @Override

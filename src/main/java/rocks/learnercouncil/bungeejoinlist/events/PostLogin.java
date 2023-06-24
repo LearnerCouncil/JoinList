@@ -23,7 +23,7 @@ public class PostLogin implements Listener {
         UUID uuid = e.getPlayer().getUniqueId();
         handleNameChange(player, uuid);
         if(!player.hasPermission("bungeejl.viewnamechanges")) return;
-        List<NameChange> unseenNameChanges = NameChange.getUnseenNameChanges(uuid);
+        List<NameChange> unseenNameChanges = NameChange.getNameChanges(uuid, false);
         if(unseenNameChanges.size() <= 0) return;
 
         player.sendMessage(new ComponentBuilder(ChatColor.DARK_AQUA + "[BungeeJoinList] " + ChatColor.YELLOW + unseenNameChanges.size() + ChatColor.AQUA + " player(s) have changed their username since you last logged on. Click here to view them.").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/bungeejl ncview")).create());

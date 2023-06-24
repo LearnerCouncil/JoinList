@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 
 import static net.md_5.bungee.api.ChatColor.*;
 
-public class BungeejlCommand extends Command implements TabExecutor {
-
+public class BungeejlCommand/* extends Command implements TabExecutor*/ {
+    /*
     private String name;
 
     public BungeejlCommand() {
@@ -52,7 +52,7 @@ public class BungeejlCommand extends Command implements TabExecutor {
                 case "add":
                     if(args.length != 2) return;
 
-                    if(!RequestHandler.requestUUID(name)) {
+                    if(!RequestHandler.requestUUID(name).isPresent()) {
                         sender.sendMessage(new ComponentBuilder(prefix + RED + "Could not find player with name: " + name).create());
                         return;
                     }
@@ -67,7 +67,7 @@ public class BungeejlCommand extends Command implements TabExecutor {
                 case "list":
                     ComponentBuilder list = new ComponentBuilder(DARK_AQUA + "Players: \n");
                     for(PlayerData data : PlayerData.players) {
-                        list.append(data.getName()).event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(data.id.toString())));
+                        list.append(data.getName()).event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(data.getId().toString())));
                         if(PlayerData.players.indexOf(data) != PlayerData.players.size() - 1)
                             list.append(", ");
                     }
@@ -128,5 +128,5 @@ public class BungeejlCommand extends Command implements TabExecutor {
     private void addIfPartialMatch(List<String> list, String entry, String match) {
         if(entry.startsWith(match))
             list.add(entry);
-    }
+    }*/
 }

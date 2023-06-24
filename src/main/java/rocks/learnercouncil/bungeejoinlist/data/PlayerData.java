@@ -6,14 +6,23 @@ import java.util.*;
 
 public class PlayerData {
     @Getter private String name;
-    public final UUID id;
+    @Getter private final UUID id;
 
     public PlayerData(String name, UUID id) {
         this.name = name;
         this.id = id;
+    }
+
+    public void add() {
         players.add(this);
         names.put(name, this);
         uuids.put(id, this);
+    }
+
+    public void remove() {
+        players.remove(this);
+        names.remove(this.name);
+        uuids.remove(this.id);
     }
 
     public static final ArrayList<PlayerData> players = new ArrayList<>();
@@ -39,9 +48,9 @@ public class PlayerData {
         return name + ':' + id.toString();
     }
 
-    public static PlayerData deserialize(String serializedString) {
+    public static void deserialize(String serializedString) {
         String[] parts = serializedString.split(":");
         if(parts.length != 2) throw new IllegalArgumentException("Cannot deseirilaze provided string: " + serializedString);
-        return new PlayerData(parts[0], UUID.fromString(parts[1]));
+        new PlayerData(parts[0], UUID.fromString(parts[1])).add();
     }
 }
