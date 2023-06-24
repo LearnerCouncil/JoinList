@@ -1,16 +1,14 @@
-package rocks.learnercouncil.bungeejoinlist.commands;
+package rocks.learnercouncil.joinlist.commands;
 
-import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.hover.content.Text;
-import rocks.learnercouncil.bungeejoinlist.data.NameChange;
-import rocks.learnercouncil.bungeejoinlist.data.PlayerData;
+import rocks.learnercouncil.joinlist.data.NameChange;
+import rocks.learnercouncil.joinlist.data.PlayerData;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static net.md_5.bungee.api.ChatColor.*;
@@ -19,7 +17,7 @@ public class CommandResult {
     public static final BaseComponent[] NONE = new BaseComponent[0];
 
     private static ComponentBuilder prefix() {
-        return new ComponentBuilder().append("[BungeeJoinlist] ").color(DARK_AQUA);
+        return new ComponentBuilder().append("[Joinlist] ").color(DARK_AQUA);
     }
     private static BaseComponent[] error(String message) {
         return prefix().append(message).color(RED).create();

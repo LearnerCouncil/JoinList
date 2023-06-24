@@ -1,7 +1,7 @@
-package rocks.learnercouncil.bungeejoinlist.data;
+package rocks.learnercouncil.joinlist.data;
 
 import net.md_5.bungee.config.Configuration;
-import rocks.learnercouncil.bungeejoinlist.ConfigHandler;
+import rocks.learnercouncil.joinlist.ConfigHandler;
 
 import java.util.*;
 import java.util.stream.Collectors;

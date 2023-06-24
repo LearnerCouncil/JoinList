@@ -1,20 +1,20 @@
-package rocks.learnercouncil.bungeejoinlist;
+package rocks.learnercouncil.joinlist;
 
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
-import rocks.learnercouncil.bungeejoinlist.commands.JoinlistCmd;
-import rocks.learnercouncil.bungeejoinlist.data.NameChange;
-import rocks.learnercouncil.bungeejoinlist.data.PlayerData;
-import rocks.learnercouncil.bungeejoinlist.events.Login;
-import rocks.learnercouncil.bungeejoinlist.events.PostLogin;
+import rocks.learnercouncil.joinlist.commands.JoinlistCmd;
+import rocks.learnercouncil.joinlist.data.NameChange;
+import rocks.learnercouncil.joinlist.data.PlayerData;
+import rocks.learnercouncil.joinlist.events.Login;
+import rocks.learnercouncil.joinlist.events.PostLogin;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public final class BungeeJoinlist extends Plugin {
+public final class Joinlist extends Plugin {
 
-    @Getter private static BungeeJoinlist plugin;
+    @Getter private static Joinlist plugin;
 
     public static boolean enabled;
 

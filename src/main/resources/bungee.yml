@@ -1,6 +1,6 @@
-name: BungeeJoinlist
+name: Joinlist
 version: '${project.version}'
-main: rocks.learnercouncil.bungeejoinlist.BungeeJoinlist
+main: rocks.learnercouncil.bungeejoinlist.Joinlist
 description: A plugin to filter who can join the server
 author: h2ofiremaster
 commands:
