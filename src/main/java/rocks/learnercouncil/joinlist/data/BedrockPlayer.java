@@ -1,5 +1,5 @@
 /*
- * This file is part of JoinList - https://github.com/LearnerCouncil/Joinlist
+ * This file is part of Joinlist - https://github.com/LearnerCouncil/Joinlist
  * Copyright (c) 2023 ALP Learner Council and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,12 +18,15 @@
 
 package rocks.learnercouncil.joinlist.data;
 
-import lombok.Getter;
-
 public class BedrockPlayer extends PlayerData {
 
     public BedrockPlayer(String name) {
         this.name = name;
+    }
+
+    public static boolean contains(String name) {
+        if(!name.startsWith("+")) return false;
+        return names.containsKey(name);
     }
 
     @Override

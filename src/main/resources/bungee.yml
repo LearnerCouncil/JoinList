@@ -5,5 +5,5 @@ description: A plugin to filter who can join the server
 author: h2ofiremaster
 commands:
   joinlist:
-    permission: "bungeejl.command"
+    permission: "joinlist.command"
     aliases: [ bungeejl ]

@@ -1,5 +1,5 @@
 /*
- * This file is part of JoinList - https://github.com/LearnerCouncil/Joinlist
+ * This file is part of Joinlist - https://github.com/LearnerCouncil/Joinlist
  * Copyright (c) 2023 ALP Learner Council and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ public abstract class PlayerData {
 
     public static List<PlayerData> players = new ArrayList<>();
 
-    private static final HashMap<String, PlayerData> names = new HashMap<>();
+    protected static final HashMap<String, PlayerData> names = new HashMap<>();
     public static Optional<PlayerData> get(String name) {
         return Optional.ofNullable(names.get(name));
     }

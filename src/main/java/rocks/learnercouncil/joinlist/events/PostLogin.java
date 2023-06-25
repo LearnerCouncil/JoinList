@@ -1,5 +1,5 @@
 /*
- * This file is part of JoinList - https://github.com/LearnerCouncil/Joinlist
+ * This file is part of Joinlist - https://github.com/LearnerCouncil/Joinlist
  * Copyright (c) 2023 ALP Learner Council and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ public class PostLogin implements Listener {
         List<NameChange> unseenNameChanges = NameChange.getNameChanges(uuid, false);
         if(unseenNameChanges.size() <= 0) return;
 
-        player.sendMessage(new ComponentBuilder(ChatColor.DARK_AQUA + "[JoinList] " + ChatColor.YELLOW + unseenNameChanges.size() + ChatColor.AQUA + " player(s) have changed their username since you last logged on. Click here to view them.").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/bungeejl ncview")).create());
+        player.sendMessage(new ComponentBuilder(ChatColor.DARK_AQUA + "[Joinlist] " + ChatColor.YELLOW + unseenNameChanges.size() + ChatColor.AQUA + " player(s) have changed their username since you last logged on. Click here to view them.").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/bungeejl ncview")).create());
     }
 
     private void handleNameChange(ProxiedPlayer player, UUID uuid) {
@@ -55,7 +55,7 @@ public class PostLogin implements Listener {
         HashSet<UUID> shownPlayers = new HashSet<>();
         Joinlist.getPlugin().getProxy().getPlayers().forEach(p -> {
             if(p.hasPermission("bungeejl.viewnamechanges")) {
-                p.sendMessage(new ComponentBuilder(ChatColor.DARK_AQUA + "[JoinList] " + ChatColor.AQUA + "Player " + ChatColor.YELLOW + javaPlayer.getName() + ChatColor.AQUA + " has joined with a new username: " + ChatColor.YELLOW + player.getName()).create());
+                p.sendMessage(new ComponentBuilder(ChatColor.DARK_AQUA + "[Joinlist] " + ChatColor.AQUA + "Player " + ChatColor.YELLOW + javaPlayer.getName() + ChatColor.AQUA + " has joined with a new username: " + ChatColor.YELLOW + player.getName()).create());
                 shownPlayers.add(p.getUniqueId());
             }
         });

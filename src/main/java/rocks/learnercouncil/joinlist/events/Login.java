@@ -1,5 +1,5 @@
 /*
- * This file is part of JoinList - https://github.com/LearnerCouncil/Joinlist
+ * This file is part of Joinlist - https://github.com/LearnerCouncil/Joinlist
  * Copyright (c) 2023 ALP Learner Council and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@ import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import rocks.learnercouncil.joinlist.Joinlist;
+import rocks.learnercouncil.joinlist.data.BedrockPlayer;
 import rocks.learnercouncil.joinlist.data.JavaPlayer;
 
 public class Login implements Listener {
@@ -32,7 +33,7 @@ public class Login implements Listener {
     @EventHandler
     public void onPlayerLogin(LoginEvent e) {
         if(!Joinlist.enabled) return;
-        if(JavaPlayer.contains(e.getConnection().getUniqueId())) return;
+        if(JavaPlayer.contains(e.getConnection().getUniqueId()) || BedrockPlayer.contains(e.getConnection().getName())) return;
         e.getConnection().disconnect(new ComponentBuilder(
                 "You are not on the joinlist.\n Please type")
                 .color(ChatColor.RED)

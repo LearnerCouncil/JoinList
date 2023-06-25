@@ -1,5 +1,5 @@
 /*
- * This file is part of JoinList - https://github.com/LearnerCouncil/Joinlist
+ * This file is part of Joinlist - https://github.com/LearnerCouncil/Joinlist
  * Copyright (c) 2023 ALP Learner Council and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,10 +19,8 @@
 package rocks.learnercouncil.joinlist;
 
 import lombok.Getter;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import rocks.learnercouncil.joinlist.commands.JoinlistCmd;
-import rocks.learnercouncil.joinlist.data.JavaPlayer;
 import rocks.learnercouncil.joinlist.data.NameChange;
 import rocks.learnercouncil.joinlist.data.PlayerData;
 import rocks.learnercouncil.joinlist.events.Login;
@@ -43,19 +41,19 @@ public final class Joinlist extends Plugin {
         plugin = this;
         //
         enabled = ConfigHandler.config.getBoolean("enabled");
-        ConfigHandler.config.getStringList("JAVA_PLAYERS").forEach(PlayerData::deserialize);
+        ConfigHandler.config.getStringList("players").forEach(PlayerData::deserialize);
         NameChange.deserialize();
         getLogger().info("Loaded Joinlist.");
         getProxy().getPluginManager().registerListener(this, new Login());
         getProxy().getPluginManager().registerListener(this, new PostLogin());
-        ProxyServer.getInstance().getPluginManager().registerCommand(this, new JoinlistCmd());
+        getProxy().getPluginManager().registerCommand(this, new JoinlistCmd());
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
         List<String> playerList = PlayerData.players.stream().map(PlayerData::serialize).collect(Collectors.toList());
-        ConfigHandler.config.set("JAVA_PLAYERS", playerList);
+        ConfigHandler.config.set("players", playerList);
         ConfigHandler.config.set("enabled", enabled);
         NameChange.serialize();
         ConfigHandler.saveConfig();
