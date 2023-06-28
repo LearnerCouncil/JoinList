@@ -1,5 +1,5 @@
 /*
- * This file is part of JoinList - https://github.com/LearnerCouncil/Joinlist
+ * This file is part of Joinlist - https://github.com/LearnerCouncil/Joinlist
  * Copyright (c) 2023 ALP Learner Council and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -37,8 +37,8 @@ public class NameChange {
         this.newName = newName;
         this.shownPlayers = shownPlayers;
         nameChanges.add(this);
-        if(PlayerData.get(oldName).isPresent())
-            PlayerData.get(oldName).get().setName(newName);
+        if(JavaPlayer.get(oldName).isPresent())
+            JavaPlayer.get(oldName).get().setName(newName);
 
     }
 

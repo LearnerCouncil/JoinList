@@ -1,5 +1,5 @@
 /*
- * This file is part of JoinList - https://github.com/LearnerCouncil/Joinlist
+ * This file is part of Joinlist - https://github.com/LearnerCouncil/Joinlist
  * Copyright (c) 2023 ALP Learner Council and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@ import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.BaseComponent;
 import rocks.learnercouncil.joinlist.commands.CommandArgument;
 import rocks.learnercouncil.joinlist.commands.CommandResult;
+import rocks.learnercouncil.joinlist.data.JavaPlayer;
 import rocks.learnercouncil.joinlist.data.PlayerData;
 
 import java.util.Collections;

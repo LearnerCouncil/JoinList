@@ -22,37 +22,44 @@ import lombok.Getter;
 
 import java.util.*;
 
-public abstract class PlayerData {
-    @Getter protected String name;
+public class JavaPlayer extends PlayerData {
+    @Getter private final UUID id;
 
-    public static List<PlayerData> players = new ArrayList<>();
-
-    protected static final HashMap<String, PlayerData> names = new HashMap<>();
-    public static Optional<PlayerData> get(String name) {
-        return Optional.ofNullable(names.get(name));
-    }
-    public void setName(String name) {
+    public JavaPlayer(String name, UUID id) {
         this.name = name;
-        names.put(name, this);
+        this.id = id;
     }
 
+    @Override
     public void add() {
-        players.add(this);
-        names.put(name, this);
+        super.add();
+        uuids.put(id, this);
     }
+
+    @Override
     public void remove() {
-        players.remove(this);
-        names.remove(this.name);
+        super.remove();
+        uuids.remove(this.id);
     }
 
-
-    public abstract String serialize();
-    public static void deserialize(String serializedString) {
-        String[] parts = serializedString.split(":");
-        if(parts.length != 2) throw new IllegalArgumentException("Cannot deseirilaze provided string: " + serializedString);
-        if(parts[1].equals("BEDROCK"))
-            new BedrockPlayer(parts[0]).add();
-        else new JavaPlayer(parts[0], UUID.fromString(parts[1])).add();
+    private static final HashMap<UUID, JavaPlayer> uuids = new HashMap<>();
+    public static Optional<JavaPlayer> get(UUID id) {
+        return Optional.ofNullable(uuids.get(id));
+    }
+    public static boolean contains(UUID id) {
+        return uuids.containsKey(id);
     }
 
+    @Override
+    public String serialize() {
+        return name + ':' + id.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "JavaPlayer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

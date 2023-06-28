@@ -1,5 +1,5 @@
 /*
- * This file is part of JoinList - https://github.com/LearnerCouncil/Joinlist
+ * This file is part of Joinlist - https://github.com/LearnerCouncil/Joinlist
  * Copyright (c) 2023 ALP Learner Council and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ public class JoinlistCmd extends Command implements TabExecutor {
     Set<CommandArgument> arguments = new HashSet<>();
 
     public JoinlistCmd() {
-        super("joinlist", "bungeejl.command", "bungeejl");
+        super("joinlist", "joinlist.command", "bungeejl");
         initalizeArguments();
     }
 
@@ -49,7 +49,7 @@ public class JoinlistCmd extends Command implements TabExecutor {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(!sender.hasPermission("bungeejl.command")) return;
+        if(!sender.hasPermission("joinlist.command")) return;
         if(args.length < 1) {
             sender.sendMessage(CommandResult.TOO_FEW_ARGS);
             return;

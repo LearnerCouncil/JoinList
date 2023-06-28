@@ -1,5 +1,5 @@
 /*
- * This file is part of JoinList - https://github.com/LearnerCouncil/Joinlist
+ * This file is part of Joinlist - https://github.com/LearnerCouncil/Joinlist
  * Copyright (c) 2023 ALP Learner Council and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,6 @@
 package rocks.learnercouncil.joinlist;
 
 import lombok.Getter;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import rocks.learnercouncil.joinlist.commands.JoinlistCmd;
 import rocks.learnercouncil.joinlist.data.NameChange;
@@ -47,7 +46,7 @@ public final class Joinlist extends Plugin {
         getLogger().info("Loaded Joinlist.");
         getProxy().getPluginManager().registerListener(this, new Login());
         getProxy().getPluginManager().registerListener(this, new PostLogin());
-        ProxyServer.getInstance().getPluginManager().registerCommand(this, new JoinlistCmd());
+        getProxy().getPluginManager().registerCommand(this, new JoinlistCmd());
     }
 
     @Override

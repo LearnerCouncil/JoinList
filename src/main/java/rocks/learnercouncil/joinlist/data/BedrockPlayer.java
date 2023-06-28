@@ -16,28 +16,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package rocks.learnercouncil.joinlist.commands.arguments;
+package rocks.learnercouncil.joinlist.data;
 
-import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.chat.BaseComponent;
-import rocks.learnercouncil.joinlist.commands.CommandArgument;
-import rocks.learnercouncil.joinlist.commands.CommandResult;
+public class BedrockPlayer extends PlayerData {
 
-import java.util.Collections;
-import java.util.List;
+    public BedrockPlayer(String name) {
+        this.name = name;
+    }
 
-public class ListArg implements CommandArgument {
-    @Override
-    public BaseComponent[] execute(CommandSender sender, String[] args) {
-        if(!args[0].equalsIgnoreCase("list")) return CommandResult.NONE;
-        if(args.length > 1) return CommandResult.TOO_MANY_ARGS;
-
-        return CommandResult.list();
+    public static boolean contains(String name) {
+        if(!name.startsWith("+")) return false;
+        return names.containsKey(name);
     }
 
     @Override
-    public List<String> tabComplete(CommandSender sender, String[] args) {
-        if(args.length == 1) return Collections.singletonList("list");
-        return Collections.emptyList();
+    public String serialize() {
+        return name + ":BEDROCK";
+    }
+
+    @Override
+    public String toString() {
+        return "BedrockPlayer{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of JoinList - https://github.com/LearnerCouncil/Joinlist
+ * This file is part of Joinlist - https://github.com/LearnerCouncil/Joinlist
  * Copyright (c) 2023 ALP Learner Council and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,8 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import rocks.learnercouncil.joinlist.Joinlist;
 import rocks.learnercouncil.joinlist.commands.CommandArgument;
 import rocks.learnercouncil.joinlist.commands.CommandResult;
-import rocks.learnercouncil.joinlist.data.PlayerData;
+import rocks.learnercouncil.joinlist.data.BedrockPlayer;
+import rocks.learnercouncil.joinlist.data.JavaPlayer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -45,13 +46,17 @@ public class AddArg implements CommandArgument {
         if(args.length > 2) return CommandResult.TOO_MANY_ARGS;
 
         String username = args[1];
-        Optional<PlayerData> playerData = requestUUID(username);
-        if(!playerData.isPresent()) return CommandResult.notFound(username);
-        playerData.get().add();
-        return CommandResult.added(playerData.get().getName());
+        if(username.startsWith("+")) {
+            new BedrockPlayer(username).add();
+            return CommandResult.added(username);
+        }
+        Optional<JavaPlayer> javaPlayer = requestUUID(username);
+        if(!javaPlayer.isPresent()) return CommandResult.notFound(username);
+        javaPlayer.get().add();
+        return CommandResult.added(javaPlayer.get().getName());
     }
 
-    public Optional<PlayerData> requestUUID(String username) {
+    public Optional<JavaPlayer> requestUUID(String username) {
         try {
             URL url = new URL("https://api.mojang.com/users/profiles/minecraft/" + username);
             InputStreamReader inputStreamReader = new InputStreamReader(url.openStream());
@@ -62,7 +67,7 @@ public class AddArg implements CommandArgument {
             String name = jsonObject.get("name").getAsString();
             in.close();
 
-            return Optional.of(new PlayerData(name, UUID.fromString(uuid)));
+            return Optional.of(new JavaPlayer(name, UUID.fromString(uuid)));
         } catch (Exception e) {
             plugin.getLogger().severe("Could net get UUID of " + username);
             return Optional.empty();

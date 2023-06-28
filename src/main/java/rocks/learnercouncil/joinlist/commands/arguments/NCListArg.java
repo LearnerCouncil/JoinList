@@ -1,5 +1,5 @@
 /*
- * This file is part of JoinList - https://github.com/LearnerCouncil/Joinlist
+ * This file is part of Joinlist - https://github.com/LearnerCouncil/Joinlist
  * Copyright (c) 2023 ALP Learner Council and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ public class NCListArg implements CommandArgument {
     @Override
     public BaseComponent[] execute(CommandSender sender, String[] args) {
         if(!args[0].equalsIgnoreCase("nclist")) return CommandResult.NONE;
-        if(!sender.hasPermission("bungeejl.viewnamechanges")) return CommandResult.NO_PERMISSION;
+        if(!sender.hasPermission("joinlist.viewnamechanges")) return CommandResult.NO_PERMISSION;
         if(!(sender instanceof ProxiedPlayer)) return CommandResult.ONLY_PLAYER;
         if(args.length > 1) return CommandResult.TOO_MANY_ARGS;
         ProxiedPlayer player = (ProxiedPlayer) sender;
@@ -43,7 +43,7 @@ public class NCListArg implements CommandArgument {
 
     @Override
     public List<String> tabComplete(CommandSender sender, String[] args) {
-        if(!sender.hasPermission("bungeejl.viewnamechanges")) return Collections.emptyList();
+        if(!sender.hasPermission("joinlist.viewnamechanges")) return Collections.emptyList();
         if(args.length == 1) return Collections.singletonList("nclist");
         return Collections.emptyList();
     }
