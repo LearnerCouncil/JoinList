@@ -38,8 +38,8 @@ public class PostLogin implements Listener {
     public void onPostLogin(PostLoginEvent e) {
         if(!Joinlist.enabled) return;
         ProxiedPlayer player = e.getPlayer();
-        if(e.getPlayer().getName().startsWith("+")) return;
-        UUID uuid = e.getPlayer().getUniqueId();
+        if(player.getName().startsWith("+")) return;
+        UUID uuid = player.getUniqueId();
         handleNameChange(player, uuid);
         if(!player.hasPermission("joinlist.viewnamechanges")) return;
         List<NameChange> unseenNameChanges = NameChange.getNameChanges(uuid, false);
