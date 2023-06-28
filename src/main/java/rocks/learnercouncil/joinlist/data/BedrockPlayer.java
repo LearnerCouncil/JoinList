@@ -34,4 +34,10 @@ public class BedrockPlayer extends PlayerData {
         return name + ":BEDROCK";
     }
 
+    @Override
+    public String toString() {
+        return "BedrockPlayer{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

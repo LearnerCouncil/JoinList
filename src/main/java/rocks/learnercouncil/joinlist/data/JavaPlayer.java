@@ -54,4 +54,12 @@ public class JavaPlayer extends PlayerData {
     public String serialize() {
         return name + ':' + id.toString();
     }
+
+    @Override
+    public String toString() {
+        return "JavaPlayer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

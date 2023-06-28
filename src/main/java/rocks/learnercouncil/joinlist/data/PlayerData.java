@@ -51,9 +51,8 @@ public abstract class PlayerData {
         String[] parts = serializedString.split(":");
         if(parts.length != 2) throw new IllegalArgumentException("Cannot deseirilaze provided string: " + serializedString);
         if(parts[1].equals("BEDROCK"))
-            players.add(new BedrockPlayer(parts[0]));
-        else players.add(new JavaPlayer(parts[0], UUID.fromString(parts[1])));
-        new JavaPlayer(parts[0], UUID.fromString(parts[1])).add();
+            new BedrockPlayer(parts[0]).add();
+        else new JavaPlayer(parts[0], UUID.fromString(parts[1])).add();
     }
 
 }

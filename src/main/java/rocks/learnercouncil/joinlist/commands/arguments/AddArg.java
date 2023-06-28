@@ -48,6 +48,7 @@ public class AddArg implements CommandArgument {
         String username = args[1];
         if(username.startsWith("+")) {
             new BedrockPlayer(username).add();
+            return CommandResult.added(username);
         }
         Optional<JavaPlayer> javaPlayer = requestUUID(username);
         if(!javaPlayer.isPresent()) return CommandResult.notFound(username);
