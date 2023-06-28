@@ -9,7 +9,7 @@
     <version>1.1</version>
     <packaging>jar</packaging>
 
-    <name>JoinList</name>
+    <name>Joinlist</name>
 
     <description>A plugin to filter who can join the server</description>
     <properties>
