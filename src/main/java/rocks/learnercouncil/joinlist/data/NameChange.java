@@ -53,7 +53,7 @@ public class NameChange {
         for(NameChange change : nameChanges) {
             String basePath = "name-changes." + change.oldName + '-' + change.newName + '.';
             config.set(basePath + "date", change.date);
-            config.set(basePath + "shown-JAVA_PLAYERS", change.shownPlayers.stream().map(UUID::toString).collect(Collectors.toList()));
+            config.set(basePath + "shown-players", change.shownPlayers.stream().map(UUID::toString).collect(Collectors.toList()));
         }
     }
 
@@ -65,7 +65,7 @@ public class NameChange {
             if(names.length != 2) return;
             String oldName = names[0];
             String newName = names[1];
-            Set<UUID> shownPlayers = section.getStringList(key + ".shown-JAVA_PLAYERS").stream().map(UUID::fromString).collect(Collectors.toSet());
+            Set<UUID> shownPlayers = section.getStringList(key + ".shown-players").stream().map(UUID::fromString).collect(Collectors.toSet());
             new NameChange(date, oldName, newName, shownPlayers);
         }
     }

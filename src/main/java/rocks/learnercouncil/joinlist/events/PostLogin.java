@@ -41,11 +41,11 @@ public class PostLogin implements Listener {
         if(e.getPlayer().getName().startsWith("+")) return;
         UUID uuid = e.getPlayer().getUniqueId();
         handleNameChange(player, uuid);
-        if(!player.hasPermission("bungeejl.viewnamechanges")) return;
+        if(!player.hasPermission("joinlist.viewnamechanges")) return;
         List<NameChange> unseenNameChanges = NameChange.getNameChanges(uuid, false);
         if(unseenNameChanges.size() <= 0) return;
 
-        player.sendMessage(new ComponentBuilder(ChatColor.DARK_AQUA + "[Joinlist] " + ChatColor.YELLOW + unseenNameChanges.size() + ChatColor.AQUA + " player(s) have changed their username since you last logged on. Click here to view them.").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/bungeejl ncview")).create());
+        player.sendMessage(new ComponentBuilder(ChatColor.DARK_AQUA + "[Joinlist] " + ChatColor.YELLOW + unseenNameChanges.size() + ChatColor.AQUA + " player(s) have changed their username since you last logged on. Click here to view them.").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/joinlist ncview")).create());
     }
 
     private void handleNameChange(ProxiedPlayer player, UUID uuid) {
@@ -54,7 +54,7 @@ public class PostLogin implements Listener {
         if(javaPlayer.getName().equals(player.getName())) return;
         HashSet<UUID> shownPlayers = new HashSet<>();
         Joinlist.getPlugin().getProxy().getPlayers().forEach(p -> {
-            if(p.hasPermission("bungeejl.viewnamechanges")) {
+            if(p.hasPermission("joinlist.viewnamechanges")) {
                 p.sendMessage(new ComponentBuilder(ChatColor.DARK_AQUA + "[Joinlist] " + ChatColor.AQUA + "Player " + ChatColor.YELLOW + javaPlayer.getName() + ChatColor.AQUA + " has joined with a new username: " + ChatColor.YELLOW + player.getName()).create());
                 shownPlayers.add(p.getUniqueId());
             }
