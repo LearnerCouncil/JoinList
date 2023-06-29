@@ -20,6 +20,9 @@ package rocks.learnercouncil.joinlist.events;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.hover.content.Text;
 import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
@@ -43,5 +46,17 @@ public class Login implements Listener {
                         "text channel on our discord.")
                 .bold(false)
                 .create());
+        Joinlist.getPlugin().getProxy().getPlayers().stream().filter(p -> p.hasPermission("joinlist.alerts"))
+                .forEach(p -> p.sendMessage(new ComponentBuilder("[Joinlist] ")
+                        .color(ChatColor.DARK_AQUA)
+                        .append("Player with the username '")
+                        .color(ChatColor.RED)
+                        .append(e.getConnection().getName())
+                        .color(ChatColor.YELLOW)
+                        .bold(true)
+                        .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(e.getConnection().getUniqueId().toString())))
+                        .append("' has tried to join the network, but is not on the joinlist.")
+                        .color(ChatColor.RED)
+                        .create()));
     }
 }

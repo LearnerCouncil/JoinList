@@ -41,7 +41,7 @@ public class PostLogin implements Listener {
         if(player.getName().startsWith("+")) return;
         UUID uuid = player.getUniqueId();
         handleNameChange(player, uuid);
-        if(!player.hasPermission("joinlist.viewnamechanges")) return;
+        if(!player.hasPermission("joinlist.alerts")) return;
         List<NameChange> unseenNameChanges = NameChange.getNameChanges(uuid, false);
         if(unseenNameChanges.size() <= 0) return;
 
@@ -54,7 +54,7 @@ public class PostLogin implements Listener {
         if(javaPlayer.getName().equals(player.getName())) return;
         HashSet<UUID> shownPlayers = new HashSet<>();
         Joinlist.getPlugin().getProxy().getPlayers().forEach(p -> {
-            if(p.hasPermission("joinlist.viewnamechanges")) {
+            if(p.hasPermission("joinlist.alerts")) {
                 p.sendMessage(new ComponentBuilder(ChatColor.DARK_AQUA + "[Joinlist] " + ChatColor.AQUA + "Player " + ChatColor.YELLOW + javaPlayer.getName() + ChatColor.AQUA + " has joined with a new username: " + ChatColor.YELLOW + player.getName()).create());
                 shownPlayers.add(p.getUniqueId());
             }

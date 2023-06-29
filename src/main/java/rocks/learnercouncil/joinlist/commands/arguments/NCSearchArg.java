@@ -33,7 +33,6 @@ public class NCSearchArg implements CommandArgument {
     @Override
     public BaseComponent[] execute(CommandSender sender, String[] args) {
         if(!args[0].equalsIgnoreCase("ncsearch")) return CommandResult.NONE;
-        if(!sender.hasPermission("joinlist.viewnamechanges")) return CommandResult.NO_PERMISSION;
         if(!(sender instanceof ProxiedPlayer)) return CommandResult.ONLY_PLAYER;
         if(args.length < 2) return CommandResult.TOO_FEW_ARGS;
         ProxiedPlayer player = (ProxiedPlayer) sender;
@@ -46,7 +45,6 @@ public class NCSearchArg implements CommandArgument {
 
     @Override
     public List<String> tabComplete(CommandSender sender, String[] args) {
-        if(!sender.hasPermission("joinlist.viewnamechanges")) return Collections.emptyList();
         if(args.length == 1) return Collections.singletonList("ncsearch");
         return Collections.emptyList();
     }

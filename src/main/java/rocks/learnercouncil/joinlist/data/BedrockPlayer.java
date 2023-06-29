@@ -21,12 +21,12 @@ package rocks.learnercouncil.joinlist.data;
 public class BedrockPlayer extends PlayerData {
 
     public BedrockPlayer(String name) {
-        this.name = name;
+        this.name = name.toLowerCase();
     }
 
     public static boolean contains(String name) {
         if(!name.startsWith("+")) return false;
-        return names.containsKey(name);
+        return names.containsKey(name.toLowerCase());
     }
 
     @Override
