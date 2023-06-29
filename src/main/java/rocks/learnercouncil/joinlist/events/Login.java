@@ -46,6 +46,7 @@ public class Login implements Listener {
                         "text channel on our discord.")
                 .bold(false)
                 .create());
+
         Joinlist.getPlugin().getProxy().getPlayers().stream().filter(p -> p.hasPermission("joinlist.alerts"))
                 .forEach(p -> p.sendMessage(new ComponentBuilder("[Joinlist] ")
                         .color(ChatColor.DARK_AQUA)
@@ -57,6 +58,7 @@ public class Login implements Listener {
                         .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(e.getConnection().getUniqueId().toString())))
                         .append("' has tried to join the network, but is not on the joinlist.")
                         .color(ChatColor.RED)
+                        .bold(false)
                         .create()));
     }
 }
